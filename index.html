@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<!--<script src="https://cdn.jsdelivr.net/npm/layui@2.9.4/dist/layui.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/layui@2.9.4/dist/css/layui.min.css" rel="stylesheet">-->
+<link href="https://cdn.jsdelivr.net/npm/layui@2.9.4/dist/css/layui.min.css" rel="stylesheet">
 <!-- Designed By teamRoixir -->
 <title>
    teamRoixir 团队官网
@@ -205,13 +204,13 @@ h1 {
             <div class="container-card-box">
                <img src="https://www.jsdelivr.com/favicon.ico" alt="Image">
                <div class="container-card-text">
-                  <p><b>jsDelivr 镜像站</b></p><p>所有文件结构均遵循 jsDelivr 原有结构</p><p><a href="https://jsdelivr.mirror.jimtu.eu.org/" target="_blank">点击进入</a></p>
+                  <p><b>jsDelivr 镜像站</b></p><p>所有文件结构均遵循 jsDelivr 原有结构<input type="button" class="layui-btn-container" lay-on="iframe_jsdmirror" value="如何使用"></input></p>
                </div>
             </div>
             <div class="container-card-box">
                <img src="https://lab.jimtu.eu.org/assets/img/favicon.ico" alt="Image">
                <div class="container-card-text">
-                  <p><b>实验室</b></p><p>网页特效、实用小工具，以及其它有意思的内容</p><p><a href="https://lab.jimtu.eu.org/" target="_blank">点击进入</a></p>
+                  <p><b>实验室</b></p><p>网页特效、实用小工具，以及其它有意思的内容<input type="button" onClick= "window.open('https://lab.jimtu.eu.org/')" target="_blank" value="点击进入"></input></p>
                </div>
             </div>
          </div>
@@ -223,7 +222,7 @@ h1 {
       </h2>
       <div class="divideline"></div>
       <p>2021年9月 - 团队成立</p>
-      <p>2023年12月 - 收并 JimtuStudio。</p>
+      <p>2023年12月 - 收并 JimtuStudio 并进行分配融合。</p>
    </div>
    <div class="container-team-info">
       <h2>
@@ -272,36 +271,27 @@ h1 {
       <p class="footer-text">Copyright © 2021-<script type="text/javascript">document.write((new Date()).getFullYear());</script> teamRoixir All rights reserved.</p>
    </div>
 
-<!--<button type="button" class="layui-btn layui-btn-primary" lay-on="test-offset" data-offset="auto">正中</button>-->
+<script src="https://cdn.jsdelivr.net/npm/layui@2.9.4/dist/layui.min.js"></script>
 
-<!--<script>
+<script>
 layui.use(function(){
-  var layer = layui.layer;
-  var util = layui.util;
-  var $ = layui.$;
-  // 事件
-  util.on('lay-on', {
-    'test-offset': function(){
-      var othis = $(this);
-      var offset = othis.data('offset');
-      // 弹出位置
-      layer.open({
-        type: 1,
-        offset: offset || ['200px', '280px'], // 详细可参考 offset 属性
-        id: 'ID-demo-layer-offset-'+ offset, // 防止重复弹出
-        content: '<div style="padding: 16px;">'+ othis.text() +'</div>',
-        area: '240px',
-        btn: '关闭全部',
-        btnAlign: 'c', // 按钮居中
-        shade: 0, // 不显示遮罩
-        yes: function(){
-          layer.closeAll();
-        }
-      });
-    }
-  });
+   var layer = layui.layer;
+   var util = layui.util;
+   util.on('lay-on', {
+   iframe_jsdmirror: function(){
+       layer.open({
+           type: 2,
+           title: '更新一览',
+           shadeClose: true,
+           shade: 0.8,
+           area: ['95%', '80%'],
+           //content: '../plugin/airh_theme_note/view/htm/news.htm',
+           content: 'container/jsdmirror.html'
+       });
+   }
+   });
 });
-</script>-->
+</script>
 
 <script>
   !
