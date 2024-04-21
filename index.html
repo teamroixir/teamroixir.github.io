@@ -256,7 +256,7 @@ h1 {
          </div>
       </div>
    </div>-->
-
+   <div id="translate"></div>
    <div class="container-footer">
       <p class="footer-text">Copyright © 2021-<script type="text/javascript">document.write((new Date()).getFullYear());</script> teamRoixir All rights reserved.</p>
    </div>
@@ -369,5 +369,11 @@ layui.use(function(){
 
 </div>
 </body>
-
+ 
+      <script src="assets/js/translate.js"></script>
+      <script>
+        translate.setUseVersion2(); //设置使用v2.x 版本
+        translate.language.setLocal(''); //设置本地语种（当前网页的语种）。如果不设置，默认自动识别当前网页显示文字的语种。
+        translate.execute();//进行翻译 
+      </script>
 </html>
