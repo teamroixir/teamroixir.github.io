@@ -282,9 +282,6 @@ layui.use(function(){
    }
    });
 });
-</script>
-
-<script>
   !
   function() {
       function n(n, e, t) {
@@ -365,8 +362,136 @@ layui.use(function(){
       },
       100)
   } ();
-  </script>
+   var cursoreffects = function(t) {
+       "use strict";
+       return  t.clockCursor = function(t) {
+           let e, n, i, o = t && t.element,
+               s = o || document.body,
+               h = window.innerWidth,
+               c = window.innerHeight,
+               l = {
+                   x: h / 2,
+                   y: h / 2
+               };
+           const a = t && t.dateColor || "blue",
+               r = t && t.faceColor || "black",
+               d = t && t.secondsColor || "red",
+               u = t && t.minutesColor || "black",
+               A = t && t.hoursColor || "black",
+               m = .4,
+               g = t && t.theDays || ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"],
+               f = t && t.theMonths || ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+           let p = new Date,
+               y = p.getDate(),
+               v = p.getYear() + 1900;
+           const w = (" " + g[p.getDay()] + " " + y + " " + f[p.getMonth()] + " " + v).split(""),
+               x = ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "1", "2"],
+               E = x.length,
+               M = ["•", "•", "•"],
+               C = ["•", "•", "•", "•"],
+               L = ["•", "•", "•", "•", "•"],
+               B = 360 / E,
+               b = 360 / w.length,
+               R = 45 / 6.5,
+               S = [],
+               Y = [],
+               W = [],
+               H = [],
+               I = [],
+               X = [],
+               D = [],
+               T = [],
+               F = [];
+           var z = parseInt(w.length + E + M.length + C.length + L.length) + 1;
+           const P = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+           function J() {
+               if (P.matches) return console.log("This browser has prefers reduced motion turned on, so the cursor did not init"), !1;
+               e = document.createElement("canvas"), n = e.getContext("2d"), e.style.top = "0px", e.style.left = "0px", e.style.pointerEvents = "none", o ? (e.style.position = "absolute", s.appendChild(e), e.width = s.clientWidth, e.height = s.clientHeight) : (e.style.position = "fixed", document.body.appendChild(e), e.width = h, e.height = c), n.font = "10px sans-serif", n.textAlign = "center", n.textBaseline = "middle";
+               for (let t = 0; t < z; t++) S[t] = 0, Y[t] = 0, W[t] = 0, H[t] = 0;
+               for (let t = 0; t < w.length; t++) F[t] = {
+                   color: a,
+                   value: w[t]
+               };
+               for (let t = 0; t < x.length; t++) T[t] = {
+                   color: r,
+                   value: x[t]
+               };
+               for (let t = 0; t < M.length; t++) D[t] = {
+                   color: A,
+                   value: M[t]
+               };
+               for (let t = 0; t < C.length; t++) X[t] = {
+                   color: u,
+                   value: C[t]
+               };
+               for (let t = 0; t < L.length; t++) I[t] = {
+                   color: d,
+                   value: L[t]
+               };
+               s.addEventListener("mousemove", Z), s.addEventListener("touchmove", Q, {
+                   passive: !0
+               }), s.addEventListener("touchstart", Q, {
+                   passive: !0
+               }), window.addEventListener("resize", U), k()
+           }
+
+           function U(t) {
+               h = window.innerWidth, c = window.innerHeight, o ? (e.width = s.clientWidth, e.height = s.clientHeight) : (e.width = h, e.height = c)
+           }
+
+           function Q(t) {
+               if (t.touches.length > 0)
+                   if (o) {
+                       const e = s.getBoundingClientRect();
+                       l.x = t.touches[0].clientX - e.left, l.y = t.touches[0].clientY - e.top
+                   } else l.x = t.touches[0].clientX, l.y = t.touches[0].clientY
+           }
+
+           function Z(t) {
+               if (o) {
+                   const e = s.getBoundingClientRect();
+                   l.x = t.clientX - e.left, l.y = t.clientY - e.top
+               } else l.x = t.clientX, l.y = t.clientY
+           }
+
+           function k() {
+               ! function() {
+                   W[0] = Math.round(S[0] += (l.y - S[0]) * m), H[0] = Math.round(Y[0] += (l.x - Y[0]) * m);
+                   for (let t = 1; t < z; t++) W[t] = Math.round(S[t] += (W[t - 1] - S[t]) * m), H[t] = Math.round(Y[t] += (H[t - 1] - Y[t]) * m), S[t - 1] >= c - 80 && (S[t - 1] = c - 80), Y[t - 1] >= h - 80 && (Y[t - 1] = h - 80)
+               }(),
+               function() {
+                   n.clearRect(0, 0, h, c);
+                   const t = new Date,
+                       e = t.getSeconds(),
+                       i = Math.PI * (e - 15) / 30,
+                       o = t.getMinutes(),
+                       s = Math.PI * (o - 15) / 30,
+                       l = t.getHours(),
+                       a = Math.PI * (l - 3) / 6 + Math.PI * parseInt(t.getMinutes()) / 360;
+                   for (let t = 0; t < F.length; t++) F[t].y = S[t] + 67.5 * Math.sin(-i + t * b * Math.PI / 180), F[t].x = Y[t] + 67.5 * Math.cos(-i + t * b * Math.PI / 180), n.fillStyle = F[t].color, n.fillText(F[t].value, F[t].x, F[t].y);
+                   for (let t = 0; t < T.length; t++) T[t].y = S[F.length + t] + 45 * Math.sin(t * B * Math.PI / 180), T[t].x = Y[F.length + t] + 45 * Math.cos(t * B * Math.PI / 180), n.fillStyle = T[t].color, n.fillText(T[t].value, T[t].x, T[t].y);
+                   for (let t = 0; t < D.length; t++) D[t].y = S[F.length + E + t] + 0 + t * R * Math.sin(a), D[t].x = Y[F.length + E + t] + 0 + t * R * Math.cos(a), n.fillStyle = D[t].color, n.fillText(D[t].value, D[t].x, D[t].y);
+                   for (let t = 0; t < X.length; t++) X[t].y = S[F.length + E + D.length + t] + 0 + t * R * Math.sin(s), X[t].x = Y[F.length + E + D.length + t] + 0 + t * R * Math.cos(s), n.fillStyle = X[t].color, n.fillText(X[t].value, X[t].x, X[t].y);
+                   for (let t = 0; t < I.length; t++) I[t].y = S[F.length + E + D.length + X.length + t] + 0 + t * R * Math.sin(i), I[t].x = Y[F.length + E + D.length + X.length + t] + 0 + t * R * Math.cos(i), n.fillStyle = I[t].color, n.fillText(I[t].value, I[t].x, I[t].y)
+               }(), i = requestAnimationFrame(k)
+           }
+
+           function N() {
+               e.remove(), cancelAnimationFrame(i), s.removeEventListener("mousemove", Z), s.removeEventListener("touchmove", Q), s.removeEventListener("touchstart", Q), window.addEventListener("resize", U)
+           }
+           return P.onchange = () => {
+               P.matches ? N() : J()
+           }, J(), {
+               destroy: N
+           }
+       }, t
+   }({});
+
+   window.addEventListener("load", (event) => {
+     new cursoreffects.clockCursor();
+   });
+</script>
 </div>
 </body>
  
